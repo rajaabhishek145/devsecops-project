@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('clone code') {
+            steps {
+                git 'https://github.com/rajaabhishek145/devsecops'
+            }
+        }
+
+        stage('Build Image') {
+            steps {
+                sh 'echo "Build stage"'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh 'kubectl apply -f k8s/'
+            }
+        }
+    }
+}
